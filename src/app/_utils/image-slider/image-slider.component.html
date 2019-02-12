@@ -1,0 +1,48 @@
+<ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="imgags" class="ngu-carousel">
+    <ngu-tile *nguCarouselDef="let item; let j = index">
+        <div class="tile" *ngIf="item.id != 2" [style.background]="'url(' + item.href + ')'" style="min-height: 200px">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col align-self-start" style="font-size: 24px;">
+                        <b style="padding: 20px;">{{ item.category | translate}}</b>
+                    </div>
+                    <div class="col align-self-center text-justify pl-5">
+                    </div>
+                    <div class="col align-self-end">
+                        <div class="text-center">
+                            <a style="font-size: 24px;" routerLink="{{item.url}}" title="{{item.title}}" role="button" class="btn btn-danger btn-sm"><b id="lRequestBtn">{{ 'Read More' | translate }}</b></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 align-self-start" style="font-size: 20px;"></div>
+                    <div class="col-md-4 col-sm-6 align-self-center pl-5"></div>
+                    <div class="col-md-4 col-sm-6 align-self-end">
+                        <div class="text-justify">
+                           {{ item.text | translate }}
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        <div class="tile" *ngIf="item.id == 2" [style.background]="'url(' + item.href + ')'" style="min-height: 200px">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-2">
+                    </div>
+                    <div class="col-lg-4">
+                        {{ item.text | translate }}
+                        <a style="font-size: 24px; margin-top: 100px;" routerLink="{{item.url}}" title="{{item.title}}" role="button" class="btn btn-danger btn-sm"><b id="lRequestBtn"  >{{ 'Read More' | translate }}</b>
+                        </a>
+                    </div>
+                    <div class="col col-lg-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+      </ngu-tile>
+    <ul class="myPoint" NguCarouselPoint style="z-index: 9999;">
+        <li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint" (click)="myCarousel.moveTo(j)"
+    ></li>
+    </ul>
+</ngu-carousel>

@@ -1,0 +1,240 @@
+<!-- Section Start - Cookies -->
+<section id="cookies-id" class="main-content-ms">
+</section>
+<!-- Section End - Cookies -->
+
+<!-- Section Start - Top Area -->
+<section id="top-area" class="top-area main-content-ms">
+    <div class="container" style="height: 50px;">
+        
+        <div class="row">
+            
+            <div class="col-lg-3 col-xs-12 mt-3">
+                <div class="text-left">
+                    <div class="info">
+                        <div class="small-text">
+                            <i class="fa fa-map-marker" style="color: red"></i><b id="lAddress">{{ '6, Krali Marko Str, 9000 Varna, Bulgaria' | translate }}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-xs-12 pr-0 mt-3">
+                <div class="text-left">
+                    <div class="info">
+                        <div class="small-text">
+                            <i class="fa fa-phone" style="color: red"></i><b> +359 52 601 611</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-xs-12 l-0 mt-3">
+                <div class="text-left">
+                    <div class="info">
+                        <div class="small-text">
+                            <i class="fa fa-fax" style="color: red"></i><b> +359 52 601 154</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-xs-12 mt-2">
+                <div class="text-center">
+                    <a href="#contact-us" role="button" class="btn btn-danger btn-sm"><b id="lRequestBtn">{{ 'Request Us' | translate }}</b></a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- Section End - Top Area -->
+
+<!-- Section Start - Header -->
+<section id="home" class="home mb-5">
+    <header id="header">
+        
+        <!-- Section Start - Preloader -->
+        <div class="preloader preloader-remove"></div>
+        <!-- Section End - Preloader -->
+
+        <!-- Section Start - Container -->
+        <div class="container">
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu nav-menu-title">
+                    <li id="li-home"><a id="lHome" href="http://moniks.com/#top-area" style="margin-left: 60px;">{{ 'Home' | translate }}</a></li>
+                    <li id="li-company-profile"><a id="lCompanyProfile" href="http://moniks.com/#company-profile">{{ 'Company Profile' | translate }}</a></li>
+                    <li id="li-services"><a id="lServices" href="http://moniks.com/#services">{{ 'Services' | translate }}</a></li>
+                    <li id="li-log" class="nav-logo pl-5 pr-5">
+                        <a id="lLogo" href="http://moniks.com/" >
+                            <span class="logo-moniks">
+                                <img src="assets/images/logos/moniks.png" alt="image">
+                            </span>
+                        </a>
+                    </li>
+                    <li id="li-contact-us"><a id="lContactUs" href="http://moniks.com/#contact-us">{{ 'Contact Us' | translate }}</a></li>
+                    <li id="li-location"><a id="lLocation" href="http://moniks.com/#location">{{ 'Location' | translate }}</a></li>
+                       <li id="li-shop" class="active"><a id="lShop" routerLink="category" routerLinkActive="active">{{ 'Shop' | translate }}</a></li>
+                    <li id="li-cart" class="">
+                        <a id="lCart" [ngClass]="{'text-danger': itemCount !=0}" routerLinkActive="active"
+                        class="popover-block-container"
+                        >{{ 'Cart' | translate }} <span class="new badge">{{count$ | async}}</span>
+                        </a>
+                    </li>   
+                    <!-- Language section                                          -->
+                    <li *ngIf="clickedLang == 'en'" id="li-lang">
+                        <a title="Language" rel="external">EN 
+                            <img id="lLang_a" src="assets/images/language/en.png" alt="English">
+                            &nbsp;&nbsp;
+                            <span class="fa fa-angle-down"></span>
+
+                        </a>
+                        <ul class="sub-menu" style="margin-top: -15px;">
+                            <li class="removeHover" (click)="setLang($event, 'bg')">
+                                <a class="" title="Language" rel="external">
+                                    BG
+                                    <img id="" src="assets/images/language/bg.png" alt="Bulgarian">
+                                </a>
+                            </li>
+<!--                                 <li class="">
+                                <a (click)="setLang($event, 'ru')" title="Language" id="lLang2_a" href="#ru" rel="external">
+                                    <img class="mltlngg-lang" id="lLang_ru" src="assets/images/language/ru.png" alt="Rusian">'
+                                </a>
+                            </li> -->
+                        </ul>
+                    </li>
+
+                    <li *ngIf="clickedLang == 'bg'" id="li-lang">
+                        <a title="Language" rel="external">BG 
+                            <img id="" src="assets/images/language/bg.png" alt="Bulgarian">
+                            &nbsp;&nbsp;
+                            <span class="fa fa-angle-down"></span>
+
+                        </a>
+                        <ul class="sub-menu" style="margin-top: -15px;">
+                            <li class="removeHover" (click)="setLang($event, 'en')">
+                                <a class="" title="Language" rel="external">
+                                    EN
+                                    <img id="lLang_a" src="assets/images/language/en.png" alt="English">
+                                </a>
+                            </li>
+<!--                                 <li class="">
+                                <a (click)="setLang($event, 'ru')" title="Language" id="lLang2_a" href="#ru" rel="external">
+                                    <img class="mltlngg-lang" id="lLang_ru" src="assets/images/language/ru.png" alt="Rusian">'
+                                </a>
+                            </li> -->
+                        </ul>
+                    </li>
+
+                    <li *ngIf="clickedLang == 'ru'" id="li-lang">
+                        <a title="Language" rel="external">Ru 
+                            <img src="assets/images/language/ru.png" alt="Rusian">'
+                            &nbsp;&nbsp;
+                            <span class="fa fa-angle-down"></span>
+
+                        </a>
+                        <ul class="sub-menu" style="margin-top: -15px;">
+                            <li class="removeHover" (click)="setLang($event, 'en')">
+                                <a class="" title="Language" rel="external">
+                                    EN
+                                    <img id="lLang_a" src="assets/images/language/en.png" alt="English">
+                                </a>
+                            </li>
+                            <li class="">
+                                <a (click)="setLang($event, 'bg')" title="Language" rel="external">BG 
+                                    <img id="" src="assets/images/language/bg.png" alt="Bulgarian">
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Language section-->
+                </ul>
+            </nav>
+        
+            <div class="" id="messageBox" style="z-index: 19999; overflow-y: auto; overflow-x: hidden;">
+                    <app-cart></app-cart>
+            </div>  
+
+        </div>
+        <!-- Section End - Container -->
+    </header>
+</section>
+<!-- Section End - Header -->
+
+<div class="" id="messageBox-mobile" style="z-index: 19999; overflow-y: auto; overflow-x: hidden;">
+    <app-cart></app-cart>
+</div>  
+
+<nav *ngIf="isMobile" id="mobile-nav">
+    <ul class="" id="">
+        <li id="li-home">
+            <a href="http://moniks.com/#top-area" id="lHome" style="margin-left: 60px;">Home</a>
+        </li>
+        <li id="li-company-profile">
+            <a href="http://moniks.com/#company-profile" id="lCompanyProfile">Company Profile</a>
+        </li>
+        <li id="li-services">
+            <a href="http://moniks.com/#services" id="lServices">Services</a>
+        </li>
+        <li class="nav-logo pl-5 pr-5" id="li-log">
+            <a href="http://moniks.com/" id="lLogo">
+                <span class="logo-moniks">
+                    <img alt="image" src="assets/images/logos/moniks.png">
+                </span>
+            </a>
+        </li>
+        <li id="li-contact-us">
+            <a href="http://moniks.com/#contact-us" id="lContactUs">Contact Us</a>
+        </li>
+        <li id="li-location">
+            <a href="http://moniks.com/#location" id="lLocation">Location</a>
+        </li>
+        <li class="active" id="li-shop">
+            <a id="lShop" [routerLink]="['/categories']" routerLinkActive="active">Shop</a>
+        </li>
+        <li class="" id="li-cart">
+            <a class="popover-block-container" id="lCart" [routerLink]="['/cart']"  routerlinkactive="active">Cart <span class="new badge">0</span>
+            </a>
+        </li>
+        <li *ngIf="clickedLang == 'en'" id="li-lang">
+            <a rel="external" title="Language">EN 
+                <img  alt="English" id="lLang_a" src="assets/images/language/en.png"> &nbsp;&nbsp; <span class="fa fa-angle-down"></span>
+            </a>
+            <ul class="sub-menu" style="margin-top: -15px;">
+                <li class="removeHover" (click)="setLang($event, 'bg')">
+                    <a class="" rel="external" title="Language"> BG 
+                        <img alt="Bulgarian" id="" src="assets/images/language/bg.png">
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li *ngIf="clickedLang == 'bg'" id="li-lang">
+            <a rel="external" title="Language">BG 
+                <img  alt="English" id="lLang_a" src="assets/images/language/bg.png"> &nbsp;&nbsp; <span class="fa fa-angle-down"></span>
+            </a>
+            <ul class="sub-menu" style="margin-top: -15px;">
+                <li class="removeHover" (click)="setLang($event, 'en')">
+                    <a class="" rel="external" title="Language"> EN 
+                        <img alt="Bulgarian" id="" src="assets/images/language/en.png">
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+       <!--  <li *ngIf="clickedLang == 'ru'" id="li-lang">
+            <a rel="external" title="Language">EN 
+                <img  alt="English" id="lLang_a" src="assets/images/language/en.png"> &nbsp;&nbsp; <span class="fa fa-angle-down"></span>
+            </a>
+            <ul class="sub-menu" style="margin-top: -15px;">
+                <li class="removeHover" (click)="setLang($event, 'bg')">
+                    <a class="" rel="external" title="Language"> BG 
+                        <img alt="Bulgarian" id="" src="assets/images/language/bg.png">
+                    </a>
+                </li>
+            </ul>
+        </li> -->
+    </ul>
+</nav>
+<div *ngIf="isMobile" id="mobile-body-overly"></div>

@@ -1,0 +1,118 @@
+<div class="container">
+
+	<div class="col-12" style="padding: 0px !important;">
+		<app-product-slider></app-product-slider>
+	</div>
+
+	<div class="form-group mt-5">
+		<div class="row mt-5">
+			<div class="col-12">
+				<input type="text" class="form-control" placeholder="&#xF002; {{ 'Search Product' | translate }}" [(ngModel)]="searchTerm" style="font-family:Arial, FontAwesome" />
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-12 mt-3">
+				<ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" 
+	            (userChange)="onUserChange($event)"
+	            >
+				</ng5-slider>
+			</div>
+		</div>
+		<div class="dropdown mt-3">
+			<button type="button" class="btn btn-light dropdown-toggle btn-block" data-toggle="dropdown">
+			  {{ 'Order by' | translate }}
+			</button>
+			<div class="dropdown-menu btn-block">
+				<a class="dropdown-item" href (click)="sortTable('price', true)">{{ 'Highest Price' | translate }}</a>
+				<a class="dropdown-item" href (click)="sortTable('price', false)">{{ 'Lowest Price' | translate }}</a>
+			    <a class="dropdown-item" href (click)="sortTable('text.en.text', false)">{{ 'Name A' | translate }} to Z </a>
+			    <a class="dropdown-item" href (click)="sortTable('text.en.text', true)">{{ 'Name Z' | translate }} to A </a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row text-center mt-5 content-min-ms">
+		<div class="col-md-3 col-sm-6 product mb-5" *ngFor="let product of products | productFilterByName:searchTerm | 
+		productFilterByPrice:minValue:maxValue |
+		productFilterAll:path:order |
+		paginate: { itemsPerPage: 12, currentPage: page }">
+
+			<div class="productBox p-3" style="border: 1px solid grey">
+				<div  *ngIf="product.sale" class="circleBase">
+					<b *ngIf="lang == 'en'" style="font-size: 16px; margin-bottom: 30px; font-weight: bold;">{{ 'Sale' | translate }}</b>
+                    <b *ngIf="lang == 'bg'" style="font-size: 10px; margin-bottom: 30px; font-weight: bold;">{{ 'Sale' | translate }}</b>
+                    <b *ngIf="lang == 'ru'" style="font-size: 10px; margin-bottom: 30px; font-weight: bold;">{{ 'Sale' | translate }}</b>  
+				</div>
+
+
+				<a style="margin-left: 5px !important;">
+					<img style="height: 100px; width: 100px;" [ngClass]="{'fixOnSale': product.sale==true}" src="{{product.href}}" alt="{{ product.alt }}" title="{{ product.text.en.title }}">
+				</a>
+				<div class="bottomMs pr-5 pl-5">
+					<div class="row justify-content-center" style="font-size: 20px; font-weight: bold;">
+						<p *ngIf="lang == 'en'"> {{ product.text.en.title }} </p> 
+						<p *ngIf="lang == 'bg'"> {{ product.text.bg.title }} </p> 
+						<p *ngIf="lang == 'ru'"> {{ product.text.ru.title }} </p> 
+					</div>
+					<div class="row justify-content-center" *ngIf="product.discount == 0;else discounted">
+
+						<p style="font-size: 20px;"><b>{{ 'Price' | translate }} </b><b style="color: black;"><b style="font-size: 16px;">&euro;</b> {{product.price}}</b></p>
+
+					</div>
+					<ng-template #discounted>		
+						    <div class="row justify-content-md-center">
+							    <div class="col-md-auto">
+						    		<b>Price </b>
+									<b class="strikethrough" style="color: black;">
+										<b style="font-size: 16px;">&euro;</b> {{product.price}}
+									</b>
+							    </div>
+						    </div>
+						    <div class="row justify-content-md-center">
+							    <div class="col-md-auto">
+							    	<p style="font-size: 20px;">
+							    		<!-- <b>Price </b> -->
+							    		<b style="color: #dc3545;">
+							    			<b style="font-size: 16px;">&euro;
+							    			</b> 
+							    		{{calculateDiscount(product.price, product.discount)}}
+								    	</b>
+								    </p>	
+							    </div>
+						    </div>
+					</ng-template>
+				</div>
+			</div>
+			<div class="row middleMs" style="margin-top: -170px;">
+				<div class="row">
+					<div class="col-6 mx-auto">
+						<ul class="customLink">
+							<li>
+								<a routerLink="{{createLink(product.text.en.title)}}" class="btn btn-danger btn-sm">
+									<h5 style=""><b style="font-size: 18px !important; color: white;">{{ 'Read More' | translate }} </b></h5>
+								</a>
+							</li>
+						</ul>
+	                    <button *ngIf="lang == 'en'" (click)="addProductToCart($event, product, product)"  id="product.id" class="btn waves-effect waves-light red">
+	                    	<i class="fas fa-shopping-cart">{{ 'Add to cart' | translate }} </i>
+	                    </button>
+	                    <button *ngIf="lang == 'bg'" (click)="addProductToCart($event, product, product)"  id="product.id" class="btn waves-effect waves-light red" style="margin-left: -27px;">
+	                    	<i class="fas fa-shopping-cart">{{ 'Add to cart' | translate }} </i>
+	                    </button>
+	                    <button *ngIf="lang == 'ru'" (click)="addProductToCart($event, product, product)"  id="product.id" class="btn waves-effect waves-light red" style="margin-left: -27px;">
+	                    	<i class="fas fa-shopping-cart">{{ 'Add to cart' | translate }} </i>
+	                    </button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 justify-content-center paginate">
+	 	<pagination-controls class="my-pagination" (click)="onChanhePageLoadJs()" (pageChange)="page = $event" 
+		 	directionLinks="true" 
+		 	autoHide="true"
+		 	responsive="true">
+	 	</pagination-controls>
+	</div>
+<div>

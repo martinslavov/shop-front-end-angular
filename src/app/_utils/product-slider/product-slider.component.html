@@ -1,0 +1,94 @@
+<div class="row justify-content-md-center text-center mt-5 mb-2" style="font-size: 18px; ">
+    <div class="col col-lg-2 text-center" style="cursor: pointer;" 
+        [ngClass]="(productType =='productNewest') ? 'activeProductSlider':'border-bt-grey'"
+        (click)="changeSlider('productNewest')">
+        {{ 'Newest' | translate }}
+    </div>
+    <div class="col col-lg-2" style="cursor: pointer;" 
+        [ngClass]="(productType =='productSale') ? 'activeProductSlider':'border-bt-grey'"
+        (click)="changeSlider('productSale')">
+        {{ 'On Sale' | translate }}
+    </div>
+    <div class="col col-lg-2" style="cursor: pointer;" 
+        [ngClass]="(productType =='productBest') ? 'activeProductSlider':'border-bt-grey'"
+        (click)="changeSlider('productBest')">
+        {{ 'Best Products' | translate }}
+    </div>
+</div>
+
+<ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="productSlider" class="ngu-carousel" style="padding: 0px !important;">
+    <ngu-tile *nguCarouselDef="let itemProduct; let j = index">
+        <div class="row" style="max-height: 220px; height: 220px;">
+            <div class="" style="margin-left: auto; margin-right: auto; padding-top: 10px;">
+                <div  *ngIf="itemProduct.sale" class="circleBase">
+                    <b *ngIf="lang == 'en'" style="font-size: 16px; margin-bottom: 30px; font-weight: bold;">{{ 'Sale' | translate }}</b>
+                    <b *ngIf="lang == 'bg'" style="font-size: 8px; margin-left: -10px; margin-bottom: 30px; font-weight: bold;">{{ 'Sale' | translate }}</b>
+                    <b *ngIf="lang == 'ru'" style="font-size: 8px; margin-left: -10px; margin-bottom: 30px; font-weight: bold;">{{ 'Sale' | translate }}</b>                    
+                </div>
+
+                <a title="{{itemProduct.text.en.title}}" style="margin-left: 22px !important;">
+                    <img title="{{itemProduct.text.en.title}}" alt="{{itemProduct.alt}}"  class="imgStyle" src="{{itemProduct.href}}" alt="International Marine Supply Ltd">
+                </a>
+                <div class="bottomMs pr-5 pl-5" style="min-width: 235px;">
+                    <div class="row justify-content-center" style="font-size: 12px; font-weight: bold;">
+                        <p *ngIf="lang == 'en'"> {{ itemProduct.text.en.title }} </p> 
+                        <p *ngIf="lang == 'bg'"> {{ itemProduct.text.bg.title }} </p> 
+                        <p *ngIf="lang == 'ru'"> {{ itemProduct.text.ru.title }} </p> 
+                    </div>
+                    <div class="row justify-content-center" *ngIf="itemProduct.discount == 0;else discounted">
+
+                        <p style="font-size: 20px;"><b>{{ 'Price' | translate }} </b><b style="color: black;"><b style="font-size: 16px;">&euro;</b> {{itemProduct.price}}</b></p>
+
+                    </div>
+                    <ng-template #discounted>       
+                            <div class="row justify-content-md-center">
+                                <div class="col-md-auto">
+                                    <b>{{ 'Price' | translate }} </b>
+                                    <b class="strikethrough" style="color: black;">
+                                        <b style="font-size: 16px;">&euro;</b> {{itemProduct.price}}
+                                    </b>
+                                    <b style="color: #dc3545;">
+                                            <b style="font-size: 16px;">&euro;
+                                            </b> 
+                                            {{calculateDiscount(itemProduct.price, itemProduct.discount)}}
+                                    </b>
+                                </div>
+                            </div>
+                    </ng-template>
+                </div>
+
+                <div class="bottomMs pr-5 pl-5 " style=" position: absolute; bottom: 15px; border-top: 1px solid grey; margin-left: 10px; ">
+                    <div class="row d-flex justify-content-center" >
+                        <div class="col-md-12 d-flex justify-content-center">
+                                <a title="view product" class="" routerLink="{{createUrlPath(itemProduct.text.en.title)}}" class="btn waves-effect waves-light red">
+                                    <i style="color: #dc3545;" class="fas fa-eye"></i>
+                                </a>
+<!-- 
+                                <a (click)="createUrlPath(itemProduct.text.en.title)" class="btn waves-effect waves-light red">
+                                    <i style="color: #dc3545;" class="fas fa-eye"></i>
+                                </a> -->
+
+                                <a title="add to cart" (click)="addProductToCart($event, itemProduct)"  id="itemProduct.id" class="btn waves-effect waves-light red">
+                                    <i style="color: #dc3545;" class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                </a>
+
+                                <a title="add to cart" (click)="addProductToCart($event, itemProduct)"  id="itemProduct.id" class="btn waves-effect waves-light red">
+                                    <i style="color: #dc3545;" class="far fa-image"></i>
+                                </a>
+                        </div>
+                      
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </ngu-tile>
+    <button title="NguCarouselPrev" NguCarouselPrev class="leftRs" [style.opacity]="myCarousel.isFirst ? 0.5:1">&lt;</button>
+    <button title="NguCarouselNext" NguCarouselNext class="rightRs" [style.opacity]="myCarousel.isLast ? 0.5:1">&gt;</button>
+    <ul class="myPoint" NguCarouselPoint style="z-index: 9999;">
+        <li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint" (click)="myCarousel.moveTo(j)"></li>
+    </ul>
+</ngu-carousel>

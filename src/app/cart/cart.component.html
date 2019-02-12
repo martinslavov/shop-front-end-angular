@@ -1,0 +1,145 @@
+<div class="container"> 
+    <div *ngIf="isOpen" style="padding-left: 5px;">
+        <div class="row">
+             <div class="col-md-11 col-11 column-in-center mb-2 mt-2">
+                <div class="float-right mb-1 buttinHover" style="color: #dc3545; font-weight: bold; border-bottom: 1px solid grey;">
+                    <a class="main-content-ms" (click)="redirect(false)">{{ 'VIEW CART' | translate }}</a>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="items$ | async as items">
+
+            <h3 *ngIf="!items.length" class="text-center mt-5 mb-5">{{ 'Your cart is empty' | translate }}</h3>
+            <div *ngFor="let item of items; let i = index" class="row no-gutters mb-2" style="font-size: 12px;">
+                
+
+                <div class="col-md-1 col-1">
+                    <div *ngIf="i == 0" class="mb-2">#</div>
+                    <a (click)="remove(item)">
+                        <i style="font-size:12px" class="fa removeProductToCart">&#xf00d;</i>
+                    </a> 
+                </div>
+                <div class="col-md-2 col-2">
+                    <div *ngIf="i == 0" class="mb-2">{{ 'Image' | translate }}</div>
+                    <img src="{{item.href}}" alt="International Marine Supply Ltd" style="height: 40px; width: 40px;">
+                </div>
+
+                <div class="col-md-3 col-3">
+                    <div *ngIf="i == 0" class="mb-2">{{ 'Title' | translate }}</div> 
+                    <p *ngIf="lang == 'en'"> {{ item.text.en.title }} </p> 
+                    <p *ngIf="lang == 'bg'"> {{ item.text.bg.title }} </p> 
+                    <p *ngIf="lang == 'ru'"> {{ item.text.ru.title }} </p> 
+                </div>
+                <div class="col-md-2 col-2">
+                    <div *ngIf="i == 0" class="mb-2">{{ 'Price' | translate }}</div>  
+                    {{item.price}}
+                </div>
+                <div class="col-md-2 col-2">
+                    <div *ngIf="i == 0" class="mb-2">{{ 'Quantity' | translate }}</div>  
+                    <a (click)="subtract(item)">
+                        <i class="fa fa-minus removeProductToCart"></i>
+                    </a>
+                        {{item.selectedQuantity}}
+                    <a (click)="addProductToCart(item)">
+                        <i class="fa fa-plus addProductToCart"></i>
+                    </a>
+                </div>
+                <div class="col-md-2 col-2">
+                    <div *ngIf="i == 0">{{ 'Total' | translate }}</div> 
+                    {{item.total}}
+                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11 col-11 mb-2 mt-2" style="border-top: 1px solid grey;">
+                    <div class="float-right mb-1" style="font-weight: bold;">
+                        <b>{{ 'Total' | translate }} {{ total$ | async }} €</b>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-11 col-11 column-in-center">
+                    <div class="float-right mb-1" style="font-weight: bold;">
+                       <button (click)="generatePDF()" class="btn btn-danger btn-sm rounded-0" style="">{{ 'Check Out' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<!-- <div *ngIf="!isOpen" [class.popupCart]="popupCart"  class="container popupCart">
+    <section class="padding content-min-ms">
+      <ng-container *ngIf="items$ | async as items">
+
+        <h3 *ngIf="!items.length" class="text-center mt-5 mb-5">{{ 'Your cart is empty' | translate }}</h3>
+
+        <div id="contentToConvert">
+
+            <table *ngIf="items.length" class="table table-striped mt-5 mb-5">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">&nbsp;&nbsp;&nbsp;{{ 'Image' | translate }}</th>
+                        <th scope="col">{{ 'Title' | translate }}</th>
+                        <th scope="col">{{ 'Price' | translate }}</th>
+                        <th scope="col">{{ 'Description' | translate }}</th>
+                        <th scope="col">{{ 'Quantity' | translate }}</th>
+                        <th scope="col">{{ 'Total' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of items">
+                        <th scope="row" style="width: 10px;">   
+                            <a (click)="remove(item)">
+                                <i style="font-size:20px" class="fa">&#xf00d;</i>
+                            </a> 
+                        </th>
+                        <td style="width: 200px;">
+                            <img src="{{item.href}}" class="img-responsive" id="image" title="" alt="" style="width: 70px;" />
+                        </td>
+                        <td style="width: 200px;">{{item.text.en.title}}</td>
+                        <td style="width: 100px;">{{item.price}}</td>
+                        <td style="width: 160px;">{{item.text.en.description.substring(0,35)}} ...</td>
+                        <th style="width: 60px;">
+                            <a (click)="subtract(item)">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            &nbsp;
+                            {{item.selectedQuantity}}
+                            &nbsp;
+                            <a (click)="addProductToCart(item)">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </th>
+                        <th style="width: 100px;">{{item.total}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                        <td colspan="1">Total</td>
+                        <td style="width: 120px;">{{ total$ | async }} €</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                        <td colspan="2">
+                            <div class="col-lg-3 col-xs-10 mt-2">
+                                <div class="text-center">
+                                      <button (click)="generatePDF()" class="btn btn-danger btn-lg rounded-0" style="width: 300px;">{{ 'Check Out' | translate }}</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </ng-container>
+    </section>  
+</div>  -->

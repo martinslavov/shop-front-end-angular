@@ -1,0 +1,52 @@
+<router-outlet></router-outlet>
+All product
+<br/> <p><strong>{{msg}}</strong></p>
+<div class="row text-center mt-5">
+		<div class="row col-md-12 bordered">
+			<a routerLink="product/add" class="btn btn-danger btn-sm">
+				<h5 style="margin-top: 5px;"><b style="font-size: 18px !important; color: white;">Add</b></h5>
+			</a>
+		</div>
+	<div class="row col-md-12 bordered">
+		<div class="col-md-1">ID</div>
+		<div class="col-md-1">Title</div>
+		<div class="col-md-1">Price</div>
+		<div class="col-md-1">Quantity</div>
+		<div class="col-md-1">Active</div>
+		<div class="col-md-1">Language</div>
+		<div class="col-md-1">Discount</div>
+		<div class="col-md-1">Sale</div>
+		<div class="col-md-1">Best Saller</div>
+		<div class="col-md-1">Edit</div>
+		<div class="col-md-1">Disalble</div>
+		<div class="col-md-1">Delete</div>
+	</div>
+	<div class="row col-md-12 bordered" *ngFor="let product of products;let i = index" id="{{i}}">	
+		<div class="col-md-1">{{product.id}}</div>
+		<div class="col-md-1">{{product.text.en.title}}</div>
+		<div class="col-md-1">{{product.price}}</div>
+		<div class="col-md-1">{{product.quantity}}</div>
+		<div [ngClass]="(product.enabled == true)?'enabled':'disabled'" class="col-md-1">{{product.enabled}}</div>
+		<div class="col-md-1">{{product.text.en.locale}}</div>
+		<div class="col-md-1">{{product.discount}}</div>
+		<div class="col-md-1">{{product.sale}}</div>
+		<div class="col-md-1">{{product.bestSaller}}</div>
+		<div class="col-md-1 align-items-end">
+			<a routerLink="{{createLink(product.text.en.title)}}/edit/{{product.id}}" class="btn btn-danger btn-sm">
+				<h5 style="margin-top: 5px;"><b style="font-size: 18px !important; color: white;">Edit</b></h5>
+			</a>
+			<!-- <a [routerLink]="[ 'product/edit' ,product.id]">{{product.id}} </a> -->
+		</div>
+		<div class="col-md-1">
+			<a (click)="removeProduct(i, product.enabled, product.id)" class="btn btn-danger btn-sm">
+				<h5 style="margin-top: 5px;"><b style="font-size: 18px !important; color: white;">Disable</b></h5>
+			</a>
+		</div>
+		<div class="col-md-1" style="position: right">
+			<a (click)="deleteProduct( product.id, product.text.en.title )" class="btn btn-danger btn-sm">
+				<h5 style="margin-top: 5px;"><b style="font-size: 18px !important; color: white;">Delete</b></h5>
+			</a>
+		</div>
+	</div>
+</div>
+

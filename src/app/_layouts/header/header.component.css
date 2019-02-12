@@ -1,0 +1,121 @@
+body {
+  padding: 20px;
+  text-align: center;
+}
+
+.popover-block-container .popover-icon {
+  background: none;
+  color: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+}
+.popover-block-container .popover-icon i {
+  color: #04a0b2;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.popover-header {
+  display: none;
+}
+
+.popover {
+  max-width: 706.6px;
+  width: 700px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 0 6px 1px #eee;
+}
+
+.popover-body {
+  border: none;
+  padding: 20px 49.4px 24px 24px;
+  color: #5f6976;
+  font-size: 15px;
+  font-style: italic;
+  z-index: 2;
+  line-height: 1.53;
+  letter-spacing: 0.1px;
+}
+.popover-body .popover-close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  opacity: 1;
+}
+.popover-body .popover-close .material-icons {
+  font-size: 16px;
+  font-weight: bold;
+  color: #04a0b2;
+}
+
+.nav-menu-title li a {
+  color: black;
+}
+
+ul li a.active{
+  border: 2px solid black;
+  padding-bottom: 3px;
+    padding-top: 4px;
+}
+
+.popperSpecialStyle{
+  background-color: red;
+}
+
+#messageBox {
+    display:none;
+    border: 1px solid #abc;
+    color: black;
+    max-height: 300px;
+    width: 300px;
+    position: absolute;
+    right: 7%;
+    background-color:white;
+    opacity: 1;
+}
+
+#li-cart:hover{
+ cursor: pointer;
+}
+
+.removeHover:hover{
+  background-color: #dc3545;
+
+}
+
+#messageBox-mobile{
+    display:none;
+    border: 1px solid #abc;
+    color: black;
+    max-height: 300px;
+    width: 300px;
+    position: fixed;
+    top:50px;
+    right: 7%;
+    background-color:white;
+    opacity: 1;
+}
+
+
+
+/*mobile mennu*/
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    padding-top: 18px;
+    bottom: 0;
+    z-index: 1100;
+    background: rgba(0, 0, 0, 0.9);
+    left: -260px;
+    width: 260px;
+    overflow-y: auto;
+    transition: 0.4s;
+}
+
+body.mobile-nav-active #mobile-nav {
+    z-index: 1090;
+    left: 0;
+}

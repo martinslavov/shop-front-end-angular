@@ -1,0 +1,6 @@
+<ol class="breadcrumb">
+	<li *ngFor="let breadcrumb of breadcrumbs">
+		<a class="undeline" *ngIf="breadcrumb.active && breadcrumb.text !=''" [routerLink]="[breadcrumb.path]">{{ breadcrumb.text }} &nbsp; / &nbsp; </a>
+		<a class="undeline" *ngIf="!breadcrumb.active && breadcrumb.text !=''" >{{ breadcrumb.text }} &nbsp; / &nbsp;</a>
+	</li>
+</ol>

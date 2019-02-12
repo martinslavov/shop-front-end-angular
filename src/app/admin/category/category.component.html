@@ -1,0 +1,29 @@
+<div class="row justify-content-center mt-5 mb-5">
+	<h3 class="align-middle text-center">Category</h3>
+</div>
+<div class="row mt-5 mb-5">
+	<div class="col-md-6 col-sm-6 col-xs-12" >
+		<div *ngFor="let category of categories.slice(0, categories.length / 2)">
+			<ul class="customLink">
+				<li>
+					<a *ngIf="category.enabled == true" routerLink="{{createLink(category.text.en.title)}}">
+						{{category.categoryId}}
+						{{category.text.en.title}}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-6 col-sm-6 col-xs-12" >
+		<div *ngFor="let category of categories.slice(categories.length / 2, categories.length)">
+			<ul class="customLink">
+				<li>
+					<a *ngIf="category.enabled == true" routerLink="{{createLink(category.text.en.title)}}">
+						{{category.categoryId}}
+						{{category.text.en.title}}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

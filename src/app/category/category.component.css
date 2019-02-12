@@ -1,0 +1,49 @@
+.customLink{
+	list-style-type:none;
+}
+
+.customLink:hover{
+	background: #dc3545;
+	color: white;
+	border: #dc3545;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover 
+{
+    color:white; 
+    text-decoration:none; 
+    cursor:pointer;  
+}
+
+#horizontal-style {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    text-align: left;
+}
+#horizontal-style li {
+    display: table-cell;
+}
+#horizontal-style a {
+    display: block;
+    text-align: left;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-dark:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+ul {
+    list-style-type: none;
+}

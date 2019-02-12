@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="row mb-5" style="margin-top: 40px;">
+		<div class="col-md-5 col-sm-5 col-xs-12 mb-5">
+			<div *ngIf="products?.length != 0" class="image mt-5" style="border: 1px solid grey;">
+				<ngx-gallery class="mt-0 ngx-gallery-image-ms" [options]="galleryOptions" [images]="galleryImages" alt="dadasdasdadadasdad"></ngx-gallery>
+	<!-- 			<a href="{{products[0].href[1]}}" title="" class="magnificPopup" rel="magnificPopup">
+					<img src="{{products[0].href}}" class="img-responsive" id="image" title="" alt="">
+				</a> -->
+			</div>
+		</div>
+		<div *ngIf="products.length != 0" class="col-md-7 col-sm-7 col-xs-12">
+			<div class="col-md-12 col-sm-10 col-xs-12 ">
+				<p *ngIf="lang == 'en'" style="font-size: 36px; font-weight: bold; margin-bottom: 40px; margin-top: 40px;">{{products[0].text.en.title}}</p>
+				<p *ngIf="lang == 'bg'" style="font-size: 36px; font-weight: bold; margin-bottom: 40px; margin-top: 40px;">{{products[0].text.bg.title}}</p>
+				<p *ngIf="lang == 'ru'" style="font-size: 36px; font-weight: bold; margin-bottom: 40px; margin-top: 40px;">{{products[0].text.ru.title}}</p>
+	            <button (click)="addProductToCart(products[0])" id="product.id" class="btn waves-effect waves-light red mb-2">
+	            	<i class="fas fa-shopping-cart"> {{ 'Add to cart' | translate }}</i>
+	            </button>
+				<hr/>
+				<div *ngIf="lang == 'en'" style="font-size: 16px; text-align: justify;">{{products[0].text.en.description}}</div>
+				<div *ngIf="lang == 'bg'" style="font-size: 16px; text-align: justify;">{{products[0].text.bg.description}}</div>
+				<div *ngIf="lang == 'ru'" style="font-size: 16px; text-align: justify;">{{products[0].text.ru.description}}</div>
+				<hr/>
+				<br>
+				<div style="font-size: 16px;">{{ 'Price' | translate }} &euro; <b style="color: #dc3545; font-weight: bold;">{{products[0].price}}</b></div>
+				<!-- <div style="font-size: 26px; font-weight:bold;">Availability: {{products.quantity }}</div> -->
+				<div style="font-size: 16px;">{{ 'Brand' | translate }}: <b style="font-weight: bold;">EmpireCovers</b></div>
+				<div style="font-size: 16px;">{{ 'Product code' | translate }}: <b style="font-weight: bold;">N1234DE</b></div>
+				<div style="font-size: 16px;">{{ 'Availability' | translate }}: <b style="font-weight: bold;">In Stock</b></div>
+			</div>
+		</div>
+	</div>
+</div>

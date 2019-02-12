@@ -1,0 +1,29 @@
+th a i { cursor: pointer; }
+
+.content-min-ms{
+    min-height:600px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+     background-color: white !important; 
+}
+
+.column-in-center{
+    float: none;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none !important;
+    color: black;
+}
+
+a:hover{
+    color:#dc3545;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.buttinHover a:hover{
+    color:black;
+}
